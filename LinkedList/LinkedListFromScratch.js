@@ -3,6 +3,10 @@ class Node {
     this.value = value;
     this.next = null;
   }
+
+  toString() {
+    return `${this.value}`;
+  }
 }
 
 class LinkedList {
@@ -32,7 +36,6 @@ class LinkedList {
 
 let myLinkedList = new LinkedList(10);
 myLinkedList.append(5);
-console.log(`hello there 😉`);
 myLinkedList.append(16);
 myLinkedList.prepend(53);
-console.log(myLinkedList);
+console.log(`WAITING A LITTLE THERE 🫵`);
