@@ -96,6 +96,62 @@ class LinkedList {
     }
     return temp;
   }
+
+  //go to that index and change that value to that index
+  set(index, value) {
+    let temp = this.get(index);
+    if (temp) {
+      temp.value = value;
+      return true;
+    }
+    return false;
+  }
+
+  //inserting a new node with a particular value in a particular index
+  insert(index, value) {
+    //beginning
+    if (index === 0) return this.unshift(value);
+    //at the end
+    if (index === this.length) return this.push(value);
+    //out of the boundaries
+    if (index < 0 || index > this.length) return false;
+    //anywhere in the list
+    const newNode = new Node(value);
+    const temp = this.get(index - 1);
+    //moving newNode.next to the temp.next and then the temp.next to the newNode
+    newNode.next = temp.next;
+    temp.next = newNode;
+    this.length++;
+    return true;
+  }
+
+  remove(index) {
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+    if (index < 0 || index >= this.length) return undefined;
+    let before = this.get(index - 1);
+    let temp = before.next;
+    before.next = temp.next;
+    temp.next = null;
+    this.length--;
+    return temp;
+  }
+
+  reverse() {
+    //taking head and tail to switch them
+    let temp = this.head;
+    this.head = this.tail;
+    this.tail = temp;
+    //reversing the nodes is the HARD part compa
+    let next = temp.next;
+    let prev = null;
+    for (let i = 0; i < this.length; i++) {
+      next = temp.next;
+      temp.next = prev;
+      prev = temp;
+      temp = next;
+    }
+  }
 }
 
 let myLinkedList = new LinkedList(13);
